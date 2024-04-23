@@ -6,6 +6,7 @@ use ApiFormRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\article\ArticleStoreRequest;
 use App\Models\Article;
+use App\RestfulApi\ApiResponse;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -32,8 +33,10 @@ class ArticleController extends Controller
         //logic
         Article::create($valid_data);
 
+        $res = new ApiResponse();
 
-        return response()->json(['massage' => 'مقاله با موفقیت ثبت شد']);
+        $res->setMessage('عالی بود');
+        return $res->response();
     }
 
     /**
