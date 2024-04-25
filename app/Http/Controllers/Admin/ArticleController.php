@@ -44,7 +44,7 @@ class ArticleController extends Controller
         if (!$result['ok'])
             return ApiResponseBuilder::withMessage($result['data'])->withStatus(500)->build()->response();
 
-        return ApiResponseBuilder::withMessage('عالی بود')->withData(['data' => 'slam'])->build()->response();
+        return ApiResponseBuilder::withMessage('مقاله با موفقیت ثبت شد')->withData($result['data'])->build()->response();
     }
 
     /**
