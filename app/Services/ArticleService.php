@@ -26,7 +26,7 @@ class ArticleService
             //add article
             $article = Article::create($data);
             //set cat
-            $article->categories()->attach([1,2,3,4]);
+            $article->categories()->attach($data['category_id']);
 
             return $article;
         });
@@ -37,5 +37,5 @@ class ArticleService
             return $data->delete();
         });
     }
-   
+
 }
