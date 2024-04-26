@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests\Admin\article;
+
 use App\RestfulApi\ApiFormRequest;
 
 class ArticleStoreRequest extends ApiFormRequest
@@ -27,6 +28,7 @@ class ArticleStoreRequest extends ApiFormRequest
             'description' => ['required'],
             'short_name' => ['required'],
             'image' => ['required'],
+            'category_id' => ['required'],
         ];
     }
 }

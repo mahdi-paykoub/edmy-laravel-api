@@ -21,11 +21,9 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::create('categoriables', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('categoriable_id');
-            $table->unsignedBigInteger('categoriable_type');
-            $table->timestamps();
+            $table->string('categoriable_type');
         });
     }
 
