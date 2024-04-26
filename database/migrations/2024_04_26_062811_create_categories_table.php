@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('title');
             $table->text('slug');
-            $table->text('parent');
+            $table->text('parent')->default(0);
             $table->timestamps();
         });
         Schema::create('categoriables', function (Blueprint $table) {

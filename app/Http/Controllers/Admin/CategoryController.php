@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
-use ApiFormRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\article\ArticleStoreRequest;
-use App\Models\Article;
-use App\Services\ArticleService;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\category\CategoryStoreRequest;
+use App\Models\Category;
 use App\RestfulApi\Facades\ApiResponseBuilder;
+use App\Services\CategoryService;
+use Illuminate\Http\Request;
 
-class ArticleController extends Controller
+class CategoryController extends Controller
 {
-    private ArticleService $articleService;
+    private CategoryService $categoryService;
 
     public function __construct()
     {
-        $this->articleService = new ArticleService();
+        $this->categoryService = new CategoryService();
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -32,28 +30,28 @@ class ArticleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ArticleStoreRequest $request)
+    public function store(CategoryStoreRequest $request)
     {
         $valid_data = $request->validated();
-        //logic
-        $result = $this->articleService->registerArticle($valid_data);
+
+        $result = $this->categoryService->registerCategory($valid_data);
 
         if (!$result['ok'])
             return ApiResponseBuilder::withMessage($result['data'])->withStatus(500)->build()->response();
 
-        return ApiResponseBuilder::withMessage(['مقاله با موفقیت ثبت شد'])->build()->response();
+        return ApiResponseBuilder::withMessage(['دسته بندی با موفقیت ثبت شد'])->build()->response();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Article $article
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show(Category $category)
     {
         //
     }
@@ -61,11 +59,11 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Article $article
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, Category $category)
     {
         //
     }
@@ -73,10 +71,10 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Article $article
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy(Category $category)
     {
         //
     }

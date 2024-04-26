@@ -5,14 +5,14 @@ namespace App\Services;
 
 
 use App\Base\ServiceWrapper;
-use App\Models\Article;
+use App\Models\Category;
 
-class ArticleService
+class CategoryService
 {
-    public function registerArticle($data)
+    public function registerCategory($data)
     {
         return app(ServiceWrapper::class)(function () use ($data) {
-            return Article::create($data);
+            $category =  Category::create($data);
         });
     }
 }
