@@ -6,14 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-class Article extends Model
+class Category extends Model
 {
     use HasFactory;
-    protected $fillable = ['title' , 'description' , 'short_name'];
+
+    protected $fillable = ['title' , 'slug' , 'parent_id'];
 
 
-    public function categories(): MorphToMany
+    public function articles(): MorphToMany
     {
-        return $this->morphToMany(Category::class, 'categoriable');
+        return $this->morphedByMany(Article::class, 'categoriable');
     }
+ 
 }
