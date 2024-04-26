@@ -26,6 +26,7 @@ class ArticleStoreRequest extends ApiFormRequest
             'title' => ['required'],
             'description' => ['required'],
             'short_name' => ['required'],
+            'image' => ['required'],
         ];
     }
 }

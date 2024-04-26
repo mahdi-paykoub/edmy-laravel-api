@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 class Article extends Model
 {
     use HasFactory;
-    protected $fillable = ['title' , 'description' , 'short_name'];
+    protected $fillable = ['title' , 'description' , 'short_name','image'];
 
 
     public function categories(): MorphToMany

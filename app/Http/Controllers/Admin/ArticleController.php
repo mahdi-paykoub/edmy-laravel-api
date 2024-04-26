@@ -78,6 +78,11 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $result = $this->articleService->deleteArticle($article);
+
+        if (!$result['ok'])
+            return ApiResponseBuilder::withMessage($result['data'])->withStatus(500)->build()->response();
+
+        return ApiResponseBuilder::withMessage(['مقاله مورد نظر حذف شد.'])->build()->response();
     }
 }
