@@ -6,7 +6,7 @@ namespace App\RestfulApi;
 
 class ApiResponse
 {
-    private ?string $message = null;
+    private $message;
     private $data;
     private int $status = 200;
     private array $appends = [];

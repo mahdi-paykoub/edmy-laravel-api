@@ -14,7 +14,7 @@ class ApiResponseBuilder
         $this->response = new ApiResponse();
     }
 
-    public function withMessage(string $message){
+    public function withMessage($message){
         $this->response->setMessage($message);
         return $this;
     }

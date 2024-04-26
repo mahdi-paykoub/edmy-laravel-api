@@ -15,7 +15,7 @@ class ServiceWrapper
             app()[ExceptionHandler::class]->report($throwable);
             return [
                 'ok' => false,
-                'data' => 'خطایی در بکند رخ داده است',
+                'data' => ['خطایی در بکند رخ داده است'],
             ];
         }
 

@@ -11,7 +11,7 @@ class ApiFormRequest extends FormRequest
     protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
         throw new HttpResponseException(
-            ApiResponseBuilder::withData($validator->errors())->withStatus(422)->build()->response()
+            ApiResponseBuilder::withMessage($validator->errors()->all())->withStatus(422)->build()->response()
         );
     }
 }
