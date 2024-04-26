@@ -26,7 +26,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $result = $this->articleService->getAllArticles();
+        if (!$result['ok'])
+            return ApiResponseBuilder::withMessage($result['data'])->withStatus(500)->build()->response();
+
+        return ApiResponseBuilder::withData($result['data'])->build()->response();
     }
 
     /**

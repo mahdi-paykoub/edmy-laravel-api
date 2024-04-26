@@ -9,6 +9,12 @@ use App\Models\Article;
 
 class ArticleService
 {
+    public function getAllArticles()
+    {
+        return app(ServiceWrapper::class)(function () {
+            return Article::all();
+        });
+    }
     public function registerArticle($data)
     {
         return app(ServiceWrapper::class)(function () use ($data) {
@@ -31,4 +37,5 @@ class ArticleService
             return $data->delete();
         });
     }
+   
 }
