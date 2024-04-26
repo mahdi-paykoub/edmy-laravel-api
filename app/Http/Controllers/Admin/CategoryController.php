@@ -76,6 +76,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $result = $this->categoryService->deleteCategory($category);
+
+        if (!$result['ok'])
+            return ApiResponseBuilder::withMessage($result['data'])->withStatus(500)->build()->response();
+
+        return ApiResponseBuilder::withMessage(['دسته مورد نظر حذف شد.'])->build()->response();
     }
 }

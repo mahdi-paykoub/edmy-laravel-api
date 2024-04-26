@@ -12,7 +12,13 @@ class CategoryService
     public function registerCategory($data)
     {
         return app(ServiceWrapper::class)(function () use ($data) {
-            $category =  Category::create($data);
+            return Category::create($data);
+        });
+    }
+    public function deleteCategory($data)
+    {
+        return app(ServiceWrapper::class)(function () use ($data) {
+            return $data->delete();
         });
     }
 }
