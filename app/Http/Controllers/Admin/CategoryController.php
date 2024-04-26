@@ -24,7 +24,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        
+        $result = $this->categoryService->getAllCategories();
+        if (!$result['ok'])
+            return ApiResponseBuilder::withMessage($result['data'])->withStatus(500)->build()->response();
+
+        return ApiResponseBuilder::withData($result['data'])->build()->response();
     }
 
     /**

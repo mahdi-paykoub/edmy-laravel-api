@@ -21,4 +21,11 @@ class CategoryService
             return $data->delete();
         });
     }
+
+    public function getAllCategories()
+    {
+        return app(ServiceWrapper::class)(function () {
+            return Category::all();
+        });
+    }
 }
