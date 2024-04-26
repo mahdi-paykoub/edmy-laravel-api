@@ -15,14 +15,16 @@ class ArticleService
             return Article::all();
         });
     }
+
     public function registerArticle($data)
     {
         return app(ServiceWrapper::class)(function () use ($data) {
             //upload image
             $file = $data['image'];
-            $destinationPath = 'assets/images/article';
-            $file->move(public_path($destinationPath), rand(1, 9999) . '-' . $file->getClientOriginalName());
-            $data['image'] = $destinationPath . $file->getClientOriginalName();
+            $destinationPath = 'assets/images/article/';
+            $file_name = rand(1, 9999) . '-' . $file->getClientOriginalName();
+            $file->move(public_path($destinationPath), $file_name);
+            $data['image'] = $destinationPath . $file_name;
             //add article
             $article = Article::create($data);
             //set cat
@@ -31,6 +33,7 @@ class ArticleService
             return $article;
         });
     }
+
     public function deleteArticle($data)
     {
         return app(ServiceWrapper::class)(function () use ($data) {
