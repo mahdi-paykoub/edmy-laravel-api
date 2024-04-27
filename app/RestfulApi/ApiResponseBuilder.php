@@ -26,6 +26,10 @@ class ApiResponseBuilder
         $this->response->setStatus($status);
         return $this;
     }
+    public function withAppends($appends){
+        $this->response->setAppends($appends);
+        return $this;
+    }
 
     public function build() : ApiResponse{
         return $this->response;
