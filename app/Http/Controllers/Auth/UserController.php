@@ -7,6 +7,7 @@ use App\Http\Requests\auth\LoginRequest;
 use App\Http\Requests\auth\RegisterRequest;
 use App\Models\User;
 use App\RestfulApi\Facades\ApiResponseBuilder;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -27,13 +28,25 @@ class UserController extends Controller
         ]);
 
         return ApiResponseBuilder::withData($user)
-            ->withMessage(['کاربر با موفقیت اضافه شد.'])
+            ->withMessage(['ثبت نام با موفقیت انجام شد.'])
             ->withAppends(['token' => $user->createToken($user->name)->plainTextToken])
             ->build()->response();
     }
+
+
     public function login(LoginRequest $request)
     {
-        
+        $valid_data = $request->validated();
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return ApiResponseBuilder::withMessage(['کاربر مورد نطر یافت نشد.'])
+                ->withStatus(401)
+                ->build()->response();
+        }
+        $user = User::where('email' , $request->email)->first();
+        return ApiResponseBuilder::withData($user)
+            ->withMessage(['لاگین با موفقیت انجام شد.'])
+            ->withAppends(['token' => $user->createToken($user->name)->plainTextToken])
+            ->build()->response();
     }
 
     public function logout()
