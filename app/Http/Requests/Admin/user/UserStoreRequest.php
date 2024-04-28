@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Requests\auth;
-
+namespace App\Http\Requests\Admin\user;
 use App\RestfulApi\ApiFormRequest;
 
-class RegisterRequest extends ApiFormRequest
+class UserStoreRequest extends ApiFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -16,6 +16,7 @@ class AuthController extends Controller
     {
         $this->userService = new UserService();
     }
+    
     public function register(RegisterRequest $request)
     {
         $valid_data = $request->validated();

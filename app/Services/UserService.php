@@ -5,7 +5,6 @@ namespace App\Services;
 
 
 use App\Base\ServiceWrapper;
-use App\Models\Article;
 use App\Models\User;
 use App\RestfulApi\Facades\ApiResponseBuilder;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +12,13 @@ use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
+
+    public function getAllUsers()
+    {
+        return app(ServiceWrapper::class)(function () {
+            return User::all();
+        });
+    }
 
     public function registerUser($data)
     {
@@ -45,6 +51,13 @@ class UserService
     {
         return app(ServiceWrapper::class)(function () {
             Auth::user()->currentAccessToken()->delete();
+        });
+    }
+
+    public function deleteUser($data)
+    {
+        return app(ServiceWrapper::class)(function () use ($data) {
+            return $data->delete();
         });
     }
 }
