@@ -15,4 +15,9 @@ class Course extends Model
     {
         return $this->morphToMany(Category::class, 'categoriable');
     }
+
+    public function sessions()
+    {
+        return $this->hasMany(Session::class);
+    }
 }
