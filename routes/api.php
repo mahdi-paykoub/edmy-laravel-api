@@ -22,5 +22,3 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);
 Route::middleware('auth:sanctum')->post('/logout', [UserController::class, 'logout']);
 Route::middleware('auth:sanctum')->get('/me', [UserController::class, 'getMe']);
-
-// 12|7qs3OT0NK6e58tZDLqyoF4idjJQjphBZ0Q5a9TJd
