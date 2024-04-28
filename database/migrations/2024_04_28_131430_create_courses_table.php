@@ -21,8 +21,7 @@ return new class extends Migration
             $table->integer('price');
             $table->text('support');
             $table->enum('status' , ['published' , 'unpublished' , 'presell']);
-            $table->text('cover');
-
+            $table->text('image');
             $table->timestamps();
         });
     }
