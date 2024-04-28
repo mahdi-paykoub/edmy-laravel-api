@@ -7,6 +7,7 @@ use App\Http\Requests\auth\LoginRequest;
 use App\Http\Requests\auth\RegisterRequest;
 use App\Models\User;
 use App\RestfulApi\Facades\ApiResponseBuilder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -42,7 +43,7 @@ class UserController extends Controller
                 ->withStatus(401)
                 ->build()->response();
         }
-        $user = User::where('email' , $request->email)->first();
+        $user = User::where('email', $request->email)->first();
         return ApiResponseBuilder::withData($user)
             ->withMessage(['لاگین با موفقیت انجام شد.'])
             ->withAppends(['token' => $user->createToken($user->name)->plainTextToken])
@@ -51,5 +52,12 @@ class UserController extends Controller
 
     public function logout()
     {
+        return 'logout';
+    }
+
+    public function getMe()
+    {
+        return ApiResponseBuilder::withData(auth()->user())
+        ->build()->response();
     }
 }
