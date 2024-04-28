@@ -52,12 +52,14 @@ class UserController extends Controller
 
     public function logout()
     {
-        return 'logout';
+        Auth::user()->currentAccessToken()->delete();
+        return ApiResponseBuilder::withMessage(['شما با موفقیت خارج شدید.'])
+            ->build()->response();
     }
 
     public function getMe()
     {
         return ApiResponseBuilder::withData(auth()->user())
-        ->build()->response();
+            ->build()->response();
     }
 }
