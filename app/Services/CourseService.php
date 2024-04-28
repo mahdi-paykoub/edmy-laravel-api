@@ -9,6 +9,12 @@ use App\Models\Course;
 
 class CourseService
 {
+    public function getAllCourses()
+    {
+        return app(ServiceWrapper::class)(function () {
+            return Course::all();
+        });
+    }
     public function registerCourse($data)
     {
         return app(ServiceWrapper::class)(function () use ($data) {
@@ -24,6 +30,13 @@ class CourseService
             $course->categories()->attach($data['category_id']);
 
             return $course;
+        });
+    }
+
+    public function deleteCourse($data)
+    {
+        return app(ServiceWrapper::class)(function () use ($data) {
+            return $data->delete();
         });
     }
 }

@@ -24,7 +24,11 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $result = $this->courseService->getAllCourses();
+        if (!$result['ok'])
+            return ApiResponseBuilder::withMessage($result['data'])->withStatus(500)->build()->response();
+
+        return ApiResponseBuilder::withData($result['data'])->build()->response();
     }
 
     /**
@@ -76,6 +80,11 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $result = $this->courseService->deleteCourse($course);
+
+        if (!$result['ok'])
+            return ApiResponseBuilder::withMessage($result['data'])->withStatus(500)->build()->response();
+
+        return ApiResponseBuilder::withMessage(['دوره مورد نظر حذف شد.'])->build()->response();
     }
 }
