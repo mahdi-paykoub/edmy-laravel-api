@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\client\contact_us\ContactUsRequest;
-use App\Models\ContactUs;
+use App\Http\Requests\Client\contact_us\ContactUsStoreRequest;
 use App\RestfulApi\Facades\ApiResponseBuilder;
 use App\Services\ContactUsService;
+use Illuminate\Http\Request;
 
 class ContactUsController extends Controller
 {
@@ -15,16 +15,15 @@ class ContactUsController extends Controller
     {
         $this->contactUsService = new ContactUsService();
     }
-   
-    public function store(ContactUsRequest $request)
+    public function store(ContactUsStoreRequest $request)
     {
         $valid_data = $request->validated();
-        //logic
-        $result = $this->contactUsService->registerContatcUs($valid_data);
+
+        $result = $this->contactUsService->registerContact($valid_data);
 
         if (!$result['ok'])
             return ApiResponseBuilder::withMessage($result['data'])->withStatus(500)->build()->response();
 
-        return ApiResponseBuilder::withMessage(['پیام شما با موفقیت ثبت شد.'])->build()->response();
+        return ApiResponseBuilder::withMessage([' پیام شما با موفقیت ثبت شد.'])->build()->response();
     }
 }

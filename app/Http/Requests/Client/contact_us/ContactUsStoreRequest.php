@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Requests\client\contact_us;
-
+namespace App\Http\Requests\Client\contact_us;
 use App\RestfulApi\ApiFormRequest;
 
-class ContactUsRequest extends ApiFormRequest
+class ContactUsStoreRequest extends ApiFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +23,10 @@ class ContactUsRequest extends ApiFormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
-            'email' => ['required', 'email'],
-            'phone_number' => ['required'],
-            'body' => ['required'],
+            'name' =>['required'],
+            'email' =>['required'],
+            'phone_number' =>['required'],
+            'body' =>['required'],
         ];
     }
 }
