@@ -16,5 +16,4 @@ Route::resource('user', UserController::class);
 
 
 Route::get('/session/{course}' ,  [SessionController::class, 'getSessionsOfOneCourse']);
-
 Route::resource('session', SessionController::class);
