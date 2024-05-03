@@ -26,10 +26,10 @@ class SessionService
             $file->move(public_path($destinationPath), $file_name);
             $data['video'] = $destinationPath . $file_name;
             //add session
-            $article = Session::create($data);
+            $session = Session::create($data);
 
 
-            return $article;
+            return $session;
         });
     }
 
