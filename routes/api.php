@@ -24,10 +24,11 @@ Route::post('/contact-us',[ContactUsController::class, 'store'])->name('contact.
 
 
 // course
-Route::get('/course/all',[CourseController::class, 'allCourses'])->name('all.courses');
-Route::get('/course/{courseSlug}',[CourseController::class, 'singleCourse'])->name('single.course');
+Route::get('/course/all',[CourseController::class, 'all'])->name('all.courses');
+Route::get('/course/{courseSlug}',[CourseController::class, 'single'])->name('single.course');
 //sessions
 Route::get('/course/{courseSlug}/sessions',[SessionController::class, 'getSessionsOfOneCourse'])->name('all.sessions');
 Route::get('/course/session/{session}',[SessionController::class, 'getOneSessionOfCourse'])->name('course.session');
 //article
-Route::get('/article/all',[ArticleController::class, 'all'])->name('article.all');
+Route::get('/article/all',[ArticleController::class, 'all'])->name('all.articles');
+Route::get('/article/{articleSlug}',[ArticleController::class, 'single'])->name('single.article');

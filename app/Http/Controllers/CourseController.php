@@ -15,7 +15,7 @@ class CourseController extends Controller
         $this->courseService = new CourseService();
     }
 
-    public function allCourses()
+    public function all()
     {
         $result = $this->courseService->getAllCourses();
         if (!$result['ok'])
@@ -24,7 +24,7 @@ class CourseController extends Controller
         return ApiResponseBuilder::withData($result['data'])->build()->response();
     }
 
-    public function singleCourse(Course $course)
+    public function single(Course $course)
     {
         return ApiResponseBuilder::withData($course)->build()->response();
     }
