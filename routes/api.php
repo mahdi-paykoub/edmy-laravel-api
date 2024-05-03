@@ -20,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/me', [AuthController::class, 'getMe']);
 //contact us
 Route::post('/contact-us',[ContactUsController::class, 'store'])->name('contact.us');
 
+
 // course
 Route::get('/course/all',[CourseController::class, 'allCourses'])->name('all.courses');

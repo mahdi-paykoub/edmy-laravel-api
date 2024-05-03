@@ -15,6 +15,8 @@ class CourseService
             return Course::all();
         });
     }
+    
+
     public function registerCourse($data)
     {
         return app(ServiceWrapper::class)(function () use ($data) {
