@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\CourseController;
@@ -23,3 +24,7 @@ Route::post('/contact-us',[ContactUsController::class, 'store'])->name('contact.
 
 // course
 Route::get('/course/all',[CourseController::class, 'allCourses'])->name('all.courses');
+Route::get('/course/{courseSlug}',[CourseController::class, 'singleCourse'])->name('single.course');
+//sessions
+Route::get('/course/{courseSlug}/sessions',[SessionController::class, 'getSessionsOfOneCourse'])->name('all.sessions');
+Route::get('/course/session/{session}',[SessionController::class, 'getOneSessionOfCourse'])->name('course.session');
