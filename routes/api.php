@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ContactUsController;
@@ -28,3 +29,5 @@ Route::get('/course/{courseSlug}',[CourseController::class, 'singleCourse'])->na
 //sessions
 Route::get('/course/{courseSlug}/sessions',[SessionController::class, 'getSessionsOfOneCourse'])->name('all.sessions');
 Route::get('/course/session/{session}',[SessionController::class, 'getOneSessionOfCourse'])->name('course.session');
+//article
+Route::get('/article/all',[ArticleController::class, 'all'])->name('article.all');
