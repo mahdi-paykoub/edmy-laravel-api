@@ -28,4 +28,5 @@ class ArticleController extends Controller
     {
         return ApiResponseBuilder::withData($article)->build()->response();
     }
+ 
 }

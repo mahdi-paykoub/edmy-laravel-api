@@ -5,6 +5,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,3 +33,6 @@ Route::get('/course/session/{session}',[SessionController::class, 'getOneSession
 //article
 Route::get('/article/all',[ArticleController::class, 'all'])->name('all.articles');
 Route::get('/article/{articleSlug}',[ArticleController::class, 'single'])->name('single.article');
+//search
+Route::get('/search/article/{value}',[SearchController::class, 'articleName'])->name('search.article.name');
+Route::get('/search/course/{value}',[SearchController::class, 'courseName'])->name('search.course.name');
