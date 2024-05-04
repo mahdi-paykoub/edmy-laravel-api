@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -49,6 +50,9 @@ class RouteServiceProvider extends ServiceProvider
         
         Route::bind('articleSlug' , function ($value) {
             return Article::where('short_name' , $value)->firstOrFail();
+        });
+        Route::bind('categorySlug' , function ($value) {
+            return Category::where('slug' , $value)->firstOrFail();
         });
     }
 
