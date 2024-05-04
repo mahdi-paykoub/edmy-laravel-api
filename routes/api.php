@@ -21,6 +21,7 @@ Route::post('/contact-us',[ContactUsController::class, 'store'])->name('contact.
 // course
 Route::get('/course/all',[CourseController::class, 'all'])->name('all.courses');
 Route::get('/course/{courseSlug}',[CourseController::class, 'single'])->name('single.course');
+Route::get('/course/category/{category}',[CourseController::class, 'categoryCourses'])->name('category.course');
 //sessions
 Route::get('/course/{courseSlug}/sessions',[SessionController::class, 'getSessionsOfOneCourse'])->name('all.sessions');
 Route::get('/course/session/{session}',[SessionController::class, 'getOneSessionOfCourse'])->name('course.session');
@@ -28,7 +29,6 @@ Route::get('/course/session/{session}',[SessionController::class, 'getOneSession
 Route::get('/article/all',[ArticleController::class, 'all'])->name('all.articles');
 Route::get('/article/{articleSlug}',[ArticleController::class, 'single'])->name('single.article');
 Route::get('/article/category/{category}',[ArticleController::class, 'categoryArticles'])->name('category.article');
-
 //search
 Route::get('/search/article/{value}',[SearchController::class, 'articleName'])->name('search.article.name');
 Route::get('/search/course/{value}',[SearchController::class, 'courseName'])->name('search.course.name');

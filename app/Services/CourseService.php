@@ -41,4 +41,10 @@ class CourseService
             return $data->delete();
         });
     }
+    public function getCoursesByCatId($category)
+    {
+        return app(ServiceWrapper::class)(function () use ($category) {
+            return $category->courses()->get();
+        });
+    }
 }

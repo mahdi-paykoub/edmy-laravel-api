@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Course;
 use App\RestfulApi\Facades\ApiResponseBuilder;
 use App\Services\CourseService;
@@ -27,5 +28,13 @@ class CourseController extends Controller
     public function single(Course $course)
     {
         return ApiResponseBuilder::withData($course)->build()->response();
+    }
+    public function categoryCourses(Category $category)
+    {
+        $result = $this->courseService->getCoursesByCatId($category);
+        if (!$result['ok'])
+            return ApiResponseBuilder::withMessage($result['data'])->withStatus(500)->build()->response();
+
+        return ApiResponseBuilder::withData($result['data'])->build()->response();
     }
 }
