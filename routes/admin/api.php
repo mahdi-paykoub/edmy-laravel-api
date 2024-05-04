@@ -13,6 +13,7 @@ Route::resource('article', ArticleController::class);
 Route::resource('category', CategoryController::class);
 Route::resource('course', CourseController::class);
 Route::resource('user', UserController::class);
+// Route::resource('co', UserController::class);
 Route::resource('contact-us', ContactUsController::class)->only('index', 'destroy')->parameters(['contact-us' => 'contactUs']);;
 
 
