@@ -10,12 +10,15 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title' , 'slug' , 'parent_id'];
+    protected $fillable = ['title', 'slug', 'parent_id'];
 
 
     public function articles(): MorphToMany
     {
         return $this->morphedByMany(Article::class, 'categoriable');
     }
- 
+    public function courses(): MorphToMany
+    {
+        return $this->morphedByMany(Course::class, 'categoriable');
+    }
 }

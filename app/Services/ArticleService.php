@@ -40,5 +40,10 @@ class ArticleService
             return $data->delete();
         });
     }
-
+    public function getArticlesByCategoryId($category)
+    {
+        return app(ServiceWrapper::class)(function () use ($category) {
+            return $category->articles()->get();
+        });
+    }
 }

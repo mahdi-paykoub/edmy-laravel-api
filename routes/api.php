@@ -10,21 +10,14 @@ use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 
 // auth
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 Route::middleware('auth:sanctum')->get('/me', [AuthController::class, 'getMe']);
-
 //contact us
 Route::post('/contact-us',[ContactUsController::class, 'store'])->name('contact.us');
-
-
 // course
 Route::get('/course/all',[CourseController::class, 'all'])->name('all.courses');
 Route::get('/course/{courseSlug}',[CourseController::class, 'single'])->name('single.course');
@@ -34,6 +27,8 @@ Route::get('/course/session/{session}',[SessionController::class, 'getOneSession
 //article
 Route::get('/article/all',[ArticleController::class, 'all'])->name('all.articles');
 Route::get('/article/{articleSlug}',[ArticleController::class, 'single'])->name('single.article');
+Route::get('/article/category/{category}',[ArticleController::class, 'categoryArticles'])->name('category.article');
+
 //search
 Route::get('/search/article/{value}',[SearchController::class, 'articleName'])->name('search.article.name');
 Route::get('/search/course/{value}',[SearchController::class, 'courseName'])->name('search.course.name');
