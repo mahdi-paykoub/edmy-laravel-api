@@ -20,4 +20,9 @@ class Course extends Model
     {
         return $this->hasMany(Session::class);
     }
+    
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }
