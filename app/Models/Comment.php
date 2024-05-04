@@ -15,5 +15,6 @@ class Comment extends Model
         'commentable_type',
         'rate',
         'approved',
+        'user_id',
     ];
 }

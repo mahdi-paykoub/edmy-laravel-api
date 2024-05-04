@@ -40,11 +40,5 @@ class ArticleService
             return $data->delete();
         });
     }
-    public function getSearchedArticles($data)
-    {
-        return app(ServiceWrapper::class)(function () use ($data) {
-            
-        });
-    }
 
 }
