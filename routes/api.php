@@ -33,6 +33,6 @@ Route::get('/article/category/{categorySlug}',[ArticleController::class, 'catego
 Route::get('/search/article/{value}',[SearchController::class, 'articleName'])->name('search.article.name');
 Route::get('/search/course/{value}',[SearchController::class, 'courseName'])->name('search.course.name');
 //comment
-Route::post('/comment/add',[CommentController::class, 'add'])->name('comment.add');
+Route::middleware('auth:sanctum')->post('/comment/add',[CommentController::class, 'add'])->name('comment.add');
 Route::get('/comment/article/all/{article}',[CommentController::class, 'commentsOfArticle'])->name('get.comment.article');
 Route::get('/comment/course/all/{course}',[CommentController::class, 'commentsOfCourse'])->name('get.comment.course');

@@ -29,8 +29,6 @@ class CommentStoreRequest extends ApiFormRequest
             'commentable_id' => ['required'],
             'commentable_type' => ['required'],
             'rate' => ['required'],
-            'approved' => ['required'],
-            'user_id' => ['required'],
         ];
     }
 }

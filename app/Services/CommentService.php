@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Base\ServiceWrapper;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
 
 class CommentService
 {
@@ -20,7 +21,7 @@ class CommentService
     {
         return app(ServiceWrapper::class)(function () use ($data) {
             //add comment
-            $comment = Comment::create($data);
+            $comment =  Auth::user()->comments()->create($data);
             return $comment;
         });
     }
