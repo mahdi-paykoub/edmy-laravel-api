@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\auth\LoginRequest;
 use App\Http\Requests\auth\RegisterRequest;
+use App\Http\Requests\auth\UpdateUserRequest;
+use App\Models\User;
 use App\RestfulApi\Facades\ApiResponseBuilder;
 use App\Services\UserService;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -16,7 +19,7 @@ class AuthController extends Controller
     {
         $this->userService = new UserService();
     }
-    
+
     public function register(RegisterRequest $request)
     {
         $valid_data = $request->validated();
@@ -63,5 +66,23 @@ class AuthController extends Controller
     {
         return ApiResponseBuilder::withData(auth()->user())
             ->build()->response();
+    }
+
+
+    public function update(UpdateUserRequest $request)
+    {
+
+        $valid_data = $request->validated();
+        $result = $this->userService->updateUserInfo($valid_data);
+        if (!$result['ok'])
+            return ApiResponseBuilder::withMessage($result['data'])->withStatus(500)->build()->response();
+
+        return ApiResponseBuilder::withMessage(['اطلاعات کاربری شما آپدیت شد.'])
+            ->build()->response();
+    }
+
+    public function changePassword()
+    {
+        
     }
 }

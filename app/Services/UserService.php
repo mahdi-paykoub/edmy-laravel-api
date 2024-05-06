@@ -60,4 +60,20 @@ class UserService
             return $data->delete();
         });
     }
+
+    public function updateUserInfo($data)
+    {
+        return app(ServiceWrapper::class)(function () use ($data) {
+            //upload user image
+            if(isset($date['image'])){
+                $file = $data['image'];
+                $destinationPath = 'assets/images/user/';
+                $file_name = rand(1, 9999) . '-' . $file->getClientOriginalName();
+                $file->move(public_path($destinationPath), $file_name);
+                $data['image'] = $destinationPath . $file_name;
+            }
+
+            return User::where('id', Auth::user()->id)->update($data);
+        });
+    }
 }

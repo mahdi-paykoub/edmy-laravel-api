@@ -27,8 +27,7 @@ class CourseController extends Controller
 
     public function single(Course $course)
     {
-
-        return ApiResponseBuilder::withData($course)->withAppends(['comments' =>$course->comments()->get()])->build()->response();
+        return ApiResponseBuilder::withData($course)->withAppends(['comments' => $course->comments()->where('approved',  true)->with('user')->get()])->build()->response();
     }
     public function categoryCourses(Category $category)
     {
