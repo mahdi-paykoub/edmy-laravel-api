@@ -66,7 +66,7 @@ class UserService
     {
         return app(ServiceWrapper::class)(function () use ($data) {
             //upload user image
-            if (isset($date['image'])) {
+            if (isset($data['image'])) {
                 $file = $data['image'];
                 $destinationPath = 'assets/images/user/';
                 $file_name = rand(1, 9999) . '-' . $file->getClientOriginalName();
