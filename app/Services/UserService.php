@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Base\ServiceWrapper;
 use App\Models\User;
 use App\RestfulApi\Facades\ApiResponseBuilder;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -65,7 +66,7 @@ class UserService
     {
         return app(ServiceWrapper::class)(function () use ($data) {
             //upload user image
-            if(isset($date['image'])){
+            if (isset($date['image'])) {
                 $file = $data['image'];
                 $destinationPath = 'assets/images/user/';
                 $file_name = rand(1, 9999) . '-' . $file->getClientOriginalName();
@@ -74,6 +75,19 @@ class UserService
             }
 
             return User::where('id', Auth::user()->id)->update($data);
+        });
+    }
+
+    public function updatePassword($data)
+    {
+        return app(ServiceWrapper::class)(function () use ($data) {
+            #Match The Old Password
+            if (!Hash::check($data['old_password'], Auth::user()->password)) {
+                throw new Exception();
+            }
+            return User::whereId(Auth::user()->id)->update([
+                'password' => Hash::make($data['new_password'])
+            ]);
         });
     }
 }

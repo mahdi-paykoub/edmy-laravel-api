@@ -23,7 +23,8 @@ class ChangePasswordRequest extends ApiFormRequest
     public function rules()
     {
         return [
-
+            'old_password' => ['required', 'string'],
+            'new_password' => ['required', 'string'],
         ];
     }
 }

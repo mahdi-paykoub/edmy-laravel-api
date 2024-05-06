@@ -16,8 +16,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 Route::middleware('auth:sanctum')->get('/me', [AuthController::class, 'getMe']);
-Route::middleware('auth:sanctum')->put('/user-info/update', [AuthController::class, 'update']);
-Route::middleware('auth:sanctum')->put('/change/password', [AuthController::class, 'changePassword']);
+Route::middleware('auth:sanctum')->patch('/user-info/update', [AuthController::class, 'update']);
+Route::middleware('auth:sanctum')->patch('/change/password', [AuthController::class, 'changePassword']);
 
 //contact us
 Route::post('/contact-us', [ContactUsController::class, 'store'])->name('contact.us');

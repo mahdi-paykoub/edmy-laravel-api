@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\auth\ChangePasswordRequest;
 use App\Http\Requests\auth\LoginRequest;
 use App\Http\Requests\auth\RegisterRequest;
 use App\Http\Requests\auth\UpdateUserRequest;
@@ -10,6 +11,7 @@ use App\Models\User;
 use App\RestfulApi\Facades\ApiResponseBuilder;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -81,8 +83,14 @@ class AuthController extends Controller
             ->build()->response();
     }
 
-    public function changePassword()
+    public function changePassword(ChangePasswordRequest $request)
     {
-        
+        $valid_data = $request->validated();
+        $result = $this->userService->updatePassword($valid_data);
+        if (!$result['ok'])
+            return ApiResponseBuilder::withMessage($result['data'])->withStatus(500)->build()->response();
+
+        return ApiResponseBuilder::withMessage(['رمز عبور با موفقیت تغییر یافت.'])
+            ->build()->response();
     }
 }
