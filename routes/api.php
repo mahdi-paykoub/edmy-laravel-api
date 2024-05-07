@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\Auth\AuthController;
@@ -21,6 +22,9 @@ Route::middleware('auth:sanctum')->patch('/change/password', [AuthController::cl
 
 //contact us
 Route::post('/contact-us', [ContactUsController::class, 'store'])->name('contact.us');
+
+//category
+Route::get('/category/all', [CategoryController::class, 'all'])->name('category.all');
 // course
 Route::get('/course/all', [CourseController::class, 'all'])->name('all.courses');
 Route::get('/course/{courseSlug}', [CourseController::class, 'single'])->name('single.course');
