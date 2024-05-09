@@ -20,8 +20,9 @@ return new class extends Migration
             $table->text('slug');
             $table->integer('price');
             $table->text('support');
-            $table->enum('status' , ['published' , 'unpublished' , 'presell']);
+            $table->enum('status' , ['completed' , 'performing' , 'presell']);
             $table->text('image');
+            $table->boolean('is_free');
             $table->timestamps();
         });
     }

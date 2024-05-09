@@ -25,10 +25,11 @@ Route::post('/contact-us', [ContactUsController::class, 'store'])->name('contact
 
 //category
 Route::get('/category/all', [CategoryController::class, 'all'])->name('category.all');
-// course
+//course
 Route::get('/course/all', [CourseController::class, 'all'])->name('all.courses');
 Route::get('/course/{courseSlug}', [CourseController::class, 'single'])->name('single.course');
 Route::get('/course/category/{categorySlug}', [CourseController::class, 'categoryCourses'])->name('category.course');
+Route::post('/get/courses/by/ids', [CourseController::class, 'getCourseByIds']);
 //sessions
 Route::get('/course/{courseSlug}/sessions', [SessionController::class, 'getSessionsOfOneCourse'])->name('all.sessions');
 Route::get('/course/session/{session}', [SessionController::class, 'getOneSessionOfCourse'])->name('course.session');

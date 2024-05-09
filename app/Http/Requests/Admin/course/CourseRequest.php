@@ -29,9 +29,10 @@ class CourseRequest extends ApiFormRequest
             'slug' => ['required'],
             'price' => ['required', 'numeric'],
             'support' => ['required'],
-            'status' => ['required', 'in:published,unpublished,presell'],
+            'status' => ['required', 'in:completed,performing,presell'],
             'image' => ['required'],
             'category_id' => ['required'],
+            'is_free' => ['required'],
         ];
     }
 }
