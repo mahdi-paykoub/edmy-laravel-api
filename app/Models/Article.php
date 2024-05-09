@@ -9,8 +9,10 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 class Article extends Model
 {
     use HasFactory;
-    protected $fillable = ['title' , 'description' , 'short_name','image' , 'body'];
 
+    protected $fillable = ['title', 'description', 'short_name', 'image', 'body'];
+
+   
 
     public function categories(): MorphToMany
     {
@@ -18,8 +20,6 @@ class Article extends Model
     }
     public function comments()
     {
-        return $this->morphMany(Comment::class , 'commentable');
+        return $this->morphMany(Comment::class, 'commentable');
     }
-
-
 }
