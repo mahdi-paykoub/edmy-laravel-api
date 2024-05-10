@@ -20,8 +20,9 @@ class ArticleFactory extends Factory
             'title' =>  fake()->name(),
             'description' => fake()->text(),
             'short_name' => fake()->slug(),
-            'image' => substr(fake()->image('public/assets/images/article', 400, 300,'cats'), 7),
-            'body' => fake()->paragraph(250),
+            'image' => fake()->name(),
+            //substr(fake()->image('public/assets/images/article', 400, 300,'article'), 7)
+            'body' => fake()->randomHtml(),
         ];
     }
 }
