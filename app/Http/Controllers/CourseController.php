@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\Course;
 use App\RestfulApi\Facades\ApiResponseBuilder;
 use App\Services\CourseService;
-use GuzzleHttp\Psr7\Request;
 
 class CourseController extends Controller
 {
@@ -28,7 +27,9 @@ class CourseController extends Controller
 
     public function single(Course $course)
     {
-        return ApiResponseBuilder::withData($course)->withAppends(['comments' => $course->comments()->where('approved',  true)->with('user')->get()])->build()->response();
+        return ApiResponseBuilder::withData($course->with('user')->first())->withAppends(['comments' => $course->comments()->where('approved',  true)->with('user')->get(),
+        'category' => $course->categories()->first()
+        ])->build()->response();
     }
     public function categoryCourses(Category $category)
     {
