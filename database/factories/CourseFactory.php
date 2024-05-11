@@ -23,9 +23,9 @@ class CourseFactory extends Factory
             'price' => fake()->numberBetween(1000000, 3000000),
             'support' => fake()->randomElement(['تلگرام', 'واتساپ', 'سایت', 'اینستاگرام']),
             'status' => fake()->randomElement(['completed', 'performing', 'presell']),
-            'image' => fake()->name(),
+            'image' => substr(fake()->image('public/assets/images/article', 400, 300, 'article'), 7),
             //substr(fake()->image('public/assets/images/article', 400, 300,'article'), 7)
-            'is_free' => fake()->randomElement([0, 1]),
+            'is_free' => fake()->boolean(),
         ];
     }
 }
