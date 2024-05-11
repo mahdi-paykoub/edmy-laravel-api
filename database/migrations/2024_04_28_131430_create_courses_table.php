@@ -23,6 +23,8 @@ return new class extends Migration
             $table->enum('status' , ['completed' , 'performing' , 'presell']);
             $table->text('image');
             $table->boolean('is_free');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

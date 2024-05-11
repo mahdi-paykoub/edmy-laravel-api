@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Base\ServiceWrapper;
 use App\Models\Course;
+use Illuminate\Support\Facades\Auth;
 
 class CourseService
 {
@@ -15,7 +16,7 @@ class CourseService
             return Course::all();
         });
     }
-    
+
 
     public function registerCourse($data)
     {
@@ -27,7 +28,8 @@ class CourseService
             $file->move(public_path($destinationPath), $file_name);
             $data['image'] = $destinationPath . $file_name;
             //add course
-            $course = Course::create($data);
+            $course = Auth::user()->courses()->create($data);
+            // $course = Course::create($data);
             //set cat 
             $course->categories()->attach($data['category_id']);
 
