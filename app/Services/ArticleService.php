@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Base\ServiceWrapper;
 use App\Models\Article;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleService
 {
@@ -26,7 +27,7 @@ class ArticleService
             $file->move(public_path($destinationPath), $file_name);
             $data['image'] = $destinationPath . $file_name;
             //add article
-            $article = Article::create($data);
+            $article = Auth::user()->articles()->create($data);
             //set cat
             $article->categories()->attach($data['category_id']);
 

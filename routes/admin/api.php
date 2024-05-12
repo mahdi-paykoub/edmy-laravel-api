@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::resource('article', ArticleController::class);
+Route::middleware('auth:sanctum')->resource('article', ArticleController::class);
 Route::resource('category', CategoryController::class);
 Route::middleware('auth:sanctum')->resource('course', CourseController::class);
 Route::resource('user', UserController::class);
